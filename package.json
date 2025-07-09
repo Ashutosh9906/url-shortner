@@ -1,0 +1,22 @@
+{
+  "name": "short-url",
+  "version": "1.0.0",
+  "description": "Basic url shortner",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Gandule_D_Ashutosh",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.16.1",
+    "nanoid": "^5.1.5",
+    "shortid": "^2.2.17",
+    "uuid": "^11.1.0"
+  }
+}
