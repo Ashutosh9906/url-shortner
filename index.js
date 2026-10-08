@@ -4,6 +4,9 @@ const cookieParser = require("cookie-parser");
 const { connectToMongoDB } = require("./connect")
 const { checkForAuthentication, restrictTo } = require("./middleware/auth")
 
+const {config} = require("dotenv")
+config();
+
 const url = require("./models/url");
 
 const urlRoute = require("./routes/url");
@@ -18,7 +21,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs")
 app.set("views", path.resolve("./views"))
 
-connectToMongoDB("mongodb://localhost:27017/short-url")
+connectToMongoDB(process.env.MONGO_URI)
     .then(() => console.log("MongoDB connected"))
 
 app.use(express.json());
