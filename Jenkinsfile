@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -46,30 +47,16 @@ pipeline {
                     usernameVariable: 'DOCKERHUB_USER',
                     passwordVariable: 'DOCKERHUB_TOKEN'
                 )]) {
-                    bat 'docker login -u %DOCKERHUB_USER% --password-stdin < nul'
-                    bat 'echo %DOCKERHUB_TOKEN% | docker login -u %DOCKERHUB_USER% --password-stdin'
-                    bat 'docker push %DOCKER_IMAGE%'
-                    bat 'docker logout'
-                }
-            }
-
-        stage('Push to Docker Hub') {
-            steps {
-                withCredentials([usernamePassword(
-                    credentialsId: 'dockerhub-creds',
-                    usernameVariable: 'DOCKERHUB_USER',
-                    passwordVariable: 'DOCKERHUB_TOKEN'
-                )]) {
                     bat '''
 @echo off
 echo %DOCKERHUB_TOKEN%| docker login -u %DOCKERHUB_USER% --password-stdin
+if errorlevel 1 exit /b 1
 docker push %DOCKER_IMAGE%
+if errorlevel 1 exit /b 1
 docker logout
 '''
                 }
             }
-        }
-
         }
     }
 }
