@@ -20,5 +20,11 @@ pipeline {
                 bat 'npm.cmd --version'
             }
         }
+        stage('Validate JavaScript') {
+            steps {
+                bat 'node --check index.js'
+            }
+        }
+
     }
 }
