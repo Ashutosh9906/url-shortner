@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo 'Source code checked out by Jenkins'
+                echo 'Jenkins automatic polling test'
             }
         }
 
