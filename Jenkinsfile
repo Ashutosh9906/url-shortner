@@ -60,6 +60,9 @@ docker logout
         }
 
         stage('Check Kubernetes Access') {
+            environment {
+                KUBECONFIG = 'C:\\ProgramData\\Jenkins\\kube\\config'
+            }
             steps {
                 bat 'kubectl config current-context'
                 bat 'kubectl get nodes'
