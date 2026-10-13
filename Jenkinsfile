@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo 'Jenkins automatic polling test'
+                echo 'Checking out URL Shortener project'
             }
         }
 
@@ -56,6 +56,14 @@ if errorlevel 1 exit /b 1
 docker logout
 '''
                 }
+            }
+        }
+
+        stage('Check Kubernetes Access') {
+            steps {
+                bat 'kubectl config current-context'
+                bat 'kubectl get nodes'
+                bat 'kubectl get deployments'
             }
         }
     }
